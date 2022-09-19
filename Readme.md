@@ -3,6 +3,7 @@ Relaciones de flujo de efectivo discretos con capitalización al final del perí
 
 ## Software
 [scilab 6.1.1](https://www.scilab.org/download/scilab-6.1.1)
+
 [python 3](https://www.python.org/downloads/)
 
 ## Scilab
