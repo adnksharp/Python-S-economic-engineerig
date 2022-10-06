@@ -1,48 +1,35 @@
 from Base import clean
 
 def CashFlow(order):
+    if order[0] == '(':
+        v = True
+    else:
+        v = False
     order = clean(order)
-    
-    fin = [ x.strip() for x in order.split(",") ]
-    
-    if len(fin) == 3:
-        fin[1] = float(eval(fin[1]))
-        fin[1] = float(fin[1] / 100)
-        fin[2] = float(eval(fin[2]))
+
+    FI = [x.strip() for x in order.split(',')]
+
+    if v:
+        i = float(eval(FI[1]))
+        i = float(i / 100)
+        n = float(eval(FI[2]))
+        c = 1
     else:
-        fin[1] = float(eval(fin[1]))
-        fin[3] = float(eval(fin[3]))
-        fin[3] = float(fin[3] / 100)
-        fin[4] = float(eval(fin[4]))
+        i = float(eval(FI[3]))
+        i = float(i / 100)
+        n = float(eval(FI[4]))
+        c = float(eval(FI[1]))
     
-    if "F/P" in order:
-        if fin[0] == 'F':
-            out = fin[1] * ((1 + fin[3]) ** fin[4])
-        elif fin[0] == 'F/P':
-            out = (1 + fin[1]) ** fin[2]
-    elif "P/F" in order:
-        if fin[0] == 'P':
-            out = fin[1] * (((1 + fin[3]) ** fin[4]) ** -1)
-        elif fin[0] == 'P/F':
-            out = ((1 + fin[1]) ** (fin[2])) ** -1
-    elif "P/A" in order:
-        if fin[0] == 'P':
-            out = fin[1] * (((1 + fin[3]) ** fin[4]) - 1)/(fin[3] * (1 + fin[3]) ** fin[4])
-        elif fin[0] == 'P/A':
-            out = (((1+fin[1]) ** fin[2] ) - 1)/(fin[1] * ((1 + fin[1]) ** fin[2]))
-    elif "A/P" in order:
-        if fin[0] == 'A':
-            out = fin[1] * (((((1 + fin[3]) ** fin[4]) - 1)/(fin[3] * (1 + fin[3]) ** fin[4])) ** -1 )
-        elif fin[0] == 'A/P':
-            out = ((((1+fin[1]) ** fin[2] ) - 1)/(fin[1] * ((1 + fin[1]) ** fin[2]))) ** -1
-    elif "F/A" in order:
-        if fin[0] == 'F':
-            out = fin[1] * (((1 + fin[3]) ** fin[4]) - 1)/(fin[3])
-        elif fin[0] == 'F/A':
-            out = ((1 + fin[1]) ** fin[2] - 1)/(fin[1])
-    else:
-        if fin[0] == 'A':
-            out = fin[1] * (((((1 + fin[3]) ** fin[4]) - 1)/(fin[3])) ** -1)
-        else:
-            out = (((1 + fin[1]) ** fin[2] - 1)/(fin[1])) ** -1
-    return out;
+    if 'F/P' in order or 'P/F' in order:
+        out = (1 + i) ** n
+    elif 'P/A' in order or 'A/P' in order:
+        out = ((1 + i) ** n - 1) / (i * (1 + i) ** n)
+    elif 'F/A' in order or 'A/F' in order:
+        out = ((1 + i) ** n - 1) / i
+        
+    if 'P/F' in order or 'A/P' in order or 'A/F' in order:
+            out = 1 / out
+    if v:
+        out *= c
+
+    return out
