@@ -1,7 +1,11 @@
 def clean(order):
     order = order.replace(" ", "")
+    order = order.replace("$", "")
     order = order.replace("%", "")
-    order = order.replace("m", "/1000")
+    if "Sum" in order:
+        order = order.replace("m", "m:")
+    else:
+        order = order.replace("m", "/1000")
     order = order.replace("K", "*1000")
     order = order.replace("M", "*1000000")
     order = order.replace("B", "*1000000000")
@@ -12,4 +16,4 @@ def clean(order):
     else:
         order = order.replace("(", "")
     order = order.replace(")", "")
-    return order
+    return order 
