@@ -1,20 +1,26 @@
 from Messages import *
 from CF.CF import CashFlow
-from BreakEvent.Break import BreakEvent
+from GAG.GAG import Gradient
 
-lg = Language()
+lg = "en"
 order = "."
 while order != "exit" and order != "-q":
     order = input(">_ ")
-    if "clear" in order or "-c" in order:
-        Clear()
-    if "help" in order or "-h" in order:
-        Help(lg)
     if "F/P" in order or "P/F" in order or "P/A" in order or "A/P" in order or "F/A" in order or "A/F" in order:
         OutCF(order, CashFlow(order))
+    elif "A_n" in order or "A/G" in order or "P/G" in order or "F/G" in order or "F/g" in order or "P/g" in order:
+        OutCF(order, Gradient(order))
+    elif "Sum" in order:
+        OutSG(order, Gradient(order))
     elif "PE" in order:
         OutPE(order, BreakEvent(order))
-    if "language" in order or "-l" in order:
+    elif "lang" in order or "-l" in order:
         lg = Language()
-    if "-q" in order or "exit" in order:
+    elif "clear" in order or "-c" in order:
+        Clear()
+    elif "help" in order or "-h" in order:
+        Help(lg, 200)
+    elif "exit" in order or "-q" in order:
         break
+    else:
+        Help(lg, 404)
