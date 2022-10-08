@@ -1,6 +1,6 @@
 from Messages import *
 from CF.CF import CashFlow
-from GAG.GAG import Gradient
+from GAG.GAG import Gradient    
 from BreakEvent.Break import BreakEvent
 
 lg = "en"
@@ -13,7 +13,7 @@ while order != "exit" and order != "-q":
         OutCF(order, Gradient(order))
     elif "Sum" in order:
         OutSG(order, Gradient(order))
-    elif "PE" in order:
+    elif "BE" in order or "PE" in order:
         OutPE(order, BreakEvent(order))
     elif "lang" in order or "-l" in order:
         lg = Language()

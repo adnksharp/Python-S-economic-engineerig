@@ -11,14 +11,13 @@ def CashFlow(order):
 
     if v:
         i = float(eval(FI[1]))
-        i = float(i / 100)
         n = float(eval(FI[2]))
         c = 1
     else:
         i = float(eval(FI[3]))
-        i = float(i / 100)
         n = float(eval(FI[4]))
         c = float(eval(FI[1]))
+    i = float(i / 100)
     
     if 'F/P' in order or 'P/F' in order:
         out = (1 + i) ** n
@@ -29,7 +28,7 @@ def CashFlow(order):
         
     if 'P/F' in order or 'A/P' in order or 'A/F' in order:
             out = 1 / out
-    if v:
+    if not v:
         out *= c
 
     return out

@@ -1,19 +1,16 @@
 def clean(order):
-    order = order.replace(" ", "")
-    order = order.replace("$", "")
-    order = order.replace("%", "")
-    if "Sum" in order:
-        order = order.replace("m", "m:")
-    else:
+    rep = [ " ", "$", "%", ":", ")" ]
+    if "Sum" not in order:
         order = order.replace("m", "/1000")
+    if "BE" not in order:
+        order = order.replace("B", "MM")
+    order = order.replace("M", "KK")
     order = order.replace("K", "*1000")
-    order = order.replace("M", "*1000000")
-    order = order.replace("B", "*1000000000")
     if "=" in order or ":" in order:
         order = order.replace("=", ",")
-        order = order.replace(":", "")
         order = order.replace("(", ",")
     else:
         order = order.replace("(", "")
-    order = order.replace(")", "")
+    for x in rep:
+        order = order.replace(x, "")
     return order 
