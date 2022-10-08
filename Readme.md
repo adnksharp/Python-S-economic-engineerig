@@ -160,7 +160,7 @@ $PE_S= {F \over {1 - {V \over P}}}$
 - [A = P(A/P, i, n)](sce/FI/AAP.sce)
 - [F = A(F/A, i, n)](sce/FI/FFA.sce)
 - [A = F(A/F, i, n)](sce/FI/AAF.sce) 
-- [PE: ( $Px, $F, $V )](sce/Breakeven/BreakEven.sce)
+- [PE: ( $Px, $F, $V )](sce/Breakeven/Breakeven.sce)
 
 ## Python
 - [All.py](py/Economic.py)
